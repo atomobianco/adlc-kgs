@@ -1,0 +1,167 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix adlc: <http://example.org/>.
+
+### Ontology Declaration
+adlc:
+    a               owl:Ontology ;
+    rdfs:comment    "Ontology describing decisions issued by Competition Authority."@en ;
+    owl:versionInfo "1.0" .
+
+### Classes
+adlc:Organization
+    a            owl:Class ;
+    rdfs:label   "Organization"@en ;
+    rdfs:comment "An organization such as a school, NGO, corporation, club, etc." .
+
+adlc:Corporation
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Organization ;
+    rdfs:label      "Corporation"@en ;
+    skos:altLabel   "Société"@fr ;
+    rdfs:comment    "A business corporation." .
+
+adlc:GovernmentOrganization
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Organization .
+
+adlc:MinistryEconomyFinance
+    a               owl:Class ;
+    rdfs:subClassOf adlc:GovernmentOrganization ;
+    rdfs:label      "Ministre de l'économie, des finances et de l'industrie"@fr ;
+    skos:altLabel   "le ministre"@fr ;
+    skos:altLabel   "ministre de l'économie"@fr .
+
+adlc:AdministrativeAuthority
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Organization ;
+    rdfs:label      "Administrative Authority"@en ;
+    skos:altLabel   "Autorité administrative"@fr .
+
+adlc:JurisdictionalAuthority
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Organization ;
+    rdfs:label      "Jurisdictional Authority"@en ;
+    skos:altLabel   "Autorité juridictionnelle"@fr ;
+    skos:altLabel   "Juridiction"@fr ;
+    skos:altLabel   "Jurisdiction"@fr ;
+    rdfs:comment    "An organization responsible for interpreting and applying the law."@en ;
+    skos:note       "Institution de l'État chargée de dire le droit (cf juris-dictio)."@fr ;
+    skos:note       "Tribunaux, Cours d'appel, Conseil d'État, Cour de cassation, Cour européenne des droits de l'homme, Cour de justice de l'Union européenne, etc."@fr .
+
+adlc:CompetitionAuthority
+    a               owl:Class ;
+    rdfs:subClassOf adlc:AdministrativeAuthority ;
+    rdfs:label      "Competition Authority"@en ;
+    skos:altLabel   "Autorité de la concurrence"@fr ;
+    skos:altLabel   "Conseil de la concurrence"@fr ;
+    skos:altLabel   "le Conseil"@fr ;
+    skos:altLabel   "ADLC"@fr ;
+    rdfs:comment    "The organization responsible for investigating and deciding on competition cases." .
+
+adlc:Referral
+    a             owl:Class ;
+    rdfs:label    "Referral"@en ;
+    skos:altLabel "Saisine"@fr ;
+    rdfs:comment  "The submission of a case to the Competition Authority for examination." .
+
+adlc:Hearing
+    a             owl:Class ;
+    rdfs:label    "Hearing"@en ;
+    skos:altLabel "Séance"@fr ;
+    rdfs:comment  "A meeting where the Competition Authority hears the parties involved in a competition case." .
+
+adlc:Opinion
+    a             owl:Class ;
+    rdfs:label    "Opinion"@en ;
+    skos:altLabel "Avis"@fr ;
+    rdfs:comment  "A formal statement issued by the Competition Authority expressing its findings and views on a particular case." .
+
+adlc:Decision
+    a             owl:Class ;
+    rdfs:label    "Decision"@en ;
+    skos:altLabel "Décision"@fr ;
+    skos:altLabel "Judgment"@en ;
+    skos:altLabel "Jugement"@fr ;
+    skos:note     "The identifiers for these decisions follow the pattern n-D-n, where D is the letter D and n is a number. For example, 12-D-01."@en ;
+    rdfs:comment  "A formal decision made by the Competition Authority regarding a competition case. When the decision issuer is omitted in the text, it can be assumed that it's been issued by the Competing Authority." .
+
+adlc:InterimMeasure
+    a             owl:Class ;
+    rdfs:label    "Interim Measure"@en ;
+    skos:altLabel "Mesure conservatoire"@fr ;
+    rdfs:comment  "A temporary measure taken by the Competition Authority to prevent harm to competition while it investigates a case." .
+
+### Data Properties
+adlc:hasDate
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has date" ;
+    rdfs:comment "Associates an entity with a date, indicating when an event occurred or a document was issued." ;
+    rdfs:domain  [ owl:unionOf ( adlc:Hearing adlc:Opinion adlc:Decision adlc:InterimMeasure adlc:Referral ) ] ;
+    rdfs:range   xsd:date .
+
+adlc:hasIdentifier
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has number" ;
+    rdfs:comment "Associates an entity with a unique identifier or number." ;
+    rdfs:domain  [ owl:unionOf ( adlc:Opinion adlc:Decision adlc:InterimMeasure adlc:Referral ) ] ;
+    rdfs:range   xsd:string .
+
+adlc:hasName
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has name" ;
+    rdfs:comment "Associates an entity with the name used to refer to it in a text." ;
+    rdfs:domain  adlc:Organization ;
+    rdfs:range   xsd:string .
+
+adlc:hasParentOrganization
+    a             owl:ObjectProperty ;
+    rdfs:label    "has parent organization"@en ;
+    skos:altLabel "a société mère"@fr ;
+    rdfs:comment  "The larger organization that this organization is a sub-organization of, if any."@en ;
+    rdfs:domain   adlc:Organization ;
+    rdfs:range    adlc:Organization .
+
+### Object Properties
+adlc:issues
+    a           owl:ObjectProperty ;
+    rdfs:label  "issues" ;
+    rdfs:comment
+                "A relation between the Competition Authority and the formal statements or decisions it releases, such as opinions and judgments." ;
+    rdfs:domain adlc:CompetitionAuthority ;
+    rdfs:range  [ owl:unionOf ( adlc:Opinion adlc:Decision adlc:InterimMeasure ) ] .
+
+adlc:submits
+    a             owl:ObjectProperty ;
+    rdfs:label    "submits"@en ;
+    skos:altLabel "saisit"@fr ;
+    rdfs:comment  "A relation between an organization or an individual that submits a referral for examination." ;
+    rdfs:domain   adlc:Organization ;
+    rdfs:range    adlc:Referral .
+
+adlc:addresses
+    a           owl:ObjectProperty ;
+    rdfs:label  "concerne la décision"@fr ;
+    rdfs:comment
+                "A relation where a Decision addresses issues arising from a Referral, or the execution of another Decision." ;
+    rdfs:domain adlc:Decision ;
+    rdfs:range  [ owl:unionOf ( adlc:Referral adlc:Decision ) ] .
+
+adlc:isHeardIn
+    a             owl:ObjectProperty ;
+    rdfs:label    "is heard"@en ;
+    skos:altLabel "est entendu"@fr ;
+    rdfs:comment  "A relation between a party and a Hearing, indicating that the party participated in the Hearing." ;
+    rdfs:domain   adlc:Organization ;
+    rdfs:range    adlc:Hearing .
+
+adlc:precedes
+    a           owl:ObjectProperty ;
+    rdfs:label  "precedes decision"@en ;
+    rdfs:comment
+                "A relation between a Hearing and a Decision indicating that the Hearing occurs before and leads up to the Decision."@en ;
+    rdfs:domain adlc:Hearing ;
+    rdfs:range  adlc:Decision .

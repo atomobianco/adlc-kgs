@@ -1,0 +1,216 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix adlc: <http://example.org/>.
+
+### Ontology Declaration
+adlc:
+    a               owl:Ontology ;
+    rdfs:comment    "Ontology describing decisions issued by Competition Authority."@en ;
+    owl:versionInfo "1.0" .
+
+### Classes
+adlc:Organization
+    a            owl:Class ;
+    rdfs:label   "Organization"@en ;
+    rdfs:comment "An organization such as a school, NGO, corporation, club, etc." .
+
+adlc:Corporation
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Organization ;
+    rdfs:label      "Corporation"@en ;
+    skos:altLabel   "Société"@fr ;
+    rdfs:comment    "A business corporation." .
+
+adlc:AdministrativeAuthority
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Organization ;
+    rdfs:label      "Administrative Authority"@en ;
+    skos:altLabel   "Autorité administrative"@fr .
+
+adlc:CompetitionAuthority
+    a               owl:Class ;
+    rdfs:subClassOf adlc:AdministrativeAuthority ;
+    rdfs:label      "Competition Authority"@en ;
+    skos:altLabel   "Autorité de la concurrence"@fr ;
+    skos:altLabel   "Conseil de la concurrence"@fr ;
+    skos:altLabel   "le Conseil"@fr ;
+    skos:altLabel   "ADLC"@fr ;
+    rdfs:comment    "The organization responsible for investigating and deciding on competition cases." .
+
+adlc:Referral
+    a             owl:Class ;
+    rdfs:label    "Referral"@en ;
+    skos:altLabel "Saisine"@fr ;
+    rdfs:comment  "The submission of a case to the Competition Authority for examination." .
+
+adlc:Law
+    a            owl:Class ;
+    rdfs:label   "Law"@en ;
+    rdfs:comment "A law article"@en .
+
+adlc:Violation
+    a             owl:Class ;
+    rdfs:label    "Violation"@en ;
+    skos:altLabel "Infraction"@fr ;
+    skos:altLabel "Charge, Accusation, Allegation, Indictment, Offense, Infraction, Complaint"@en ;
+    rdfs:comment  "An act that violates the competition law." .
+
+adlc:Measure
+    a          owl:Class ;
+    rdfs:label "Reparation"@en ;
+    rdfs:comment
+               "A measure is a reparation, penalty or other means of enforcement used to provide reparation for a violation."@en .
+
+adlc:Fine
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Measure ;
+    rdfs:label      "Fine"@en ;
+    skos:altLabel   "Amende"@fr ;
+    skos:altLabel   "Sanction pécuniaire"@fr ;
+    rdfs:comment    "A monetary penalty imposed on an organization for a violation." .
+
+adlc:Injunction
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Measure ;
+    rdfs:label      "Injunction"@en ;
+    skos:altLabel   "Injonction"@fr ;
+    rdfs:comment    "A court order that requires a party to do or cease doing something." ;
+    skos:note       "Failure to comply with an injunction can result in fines, imprisonment, or other legal penalties." .
+
+adlc:InjunctionPublication
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Measure ;
+    rdfs:label      "Injunction to publish"@en ;
+    skos:altLabel   "Injonction de publication"@fr ;
+    rdfs:comment    "A court order that requires a party publish information in a newspaper or similar medium." ;
+    skos:note       "Failure to comply with an injunction to publish can result in fines." .
+
+adlc:Commitment
+    a               owl:Class ;
+    rdfs:subClassOf adlc:Measure ;
+    rdfs:label      "Commitment"@en ;
+    skos:altLabel   "Engagement"@fr ;
+    rdfs:comment    "A court order that requires a party to do or cease doing something." ;
+    skos:note       "Failure to comply with an injunction does not result in fines." .
+
+### Data Properties
+adlc:hasIdentifier
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has number" ;
+    rdfs:comment "Associates an entity with a unique identifier or number." ;
+    rdfs:domain  [ owl:unionOf ( adlc:Opinion adlc:Decision adlc:InterimMeasure adlc:Referral ) ] ;
+    rdfs:range   xsd:string .
+
+adlc:hasName
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has name" ;
+    rdfs:comment "Associates an entity with the name used to refer to it in a text." ;
+    rdfs:domain  [ owl:unionOf ( adlc:Organization adlc:Law ) ] ;
+    rdfs:range   xsd:string .
+
+adlc:hasValue
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has value"@en ;
+    rdfs:comment "The quantitative value of the fine."@en ;
+    rdfs:domain  adlc:Fine ;
+    rdfs:range   xsd:decimal .
+
+adlc:hasCurrency
+    a            owl:DatatypeProperty ;
+    rdfs:label   "has currency"@en ;
+    rdfs:comment "The currency in which the monetary amount is expressed."@en ;
+    rdfs:domain  adlc:Fine ;
+    rdfs:range   xsd:string .
+
+adlc:startDate
+    a            owl:DatatypeProperty ;
+    rdfs:label   "start date"@en ;
+    rdfs:comment "The date when a violation begins."@en ;
+    rdfs:domain  [ owl:unionOf ( adlc:Violation adlc:Measure ) ] ;
+    rdfs:range   xsd:date .
+
+adlc:endDate
+    a            owl:DatatypeProperty ;
+    rdfs:label   "end date"@en ;
+    rdfs:comment "The date when a violation ends."@en ;
+    rdfs:domain  [ owl:unionOf ( adlc:Violation adlc:Measure ) ] ;
+    rdfs:range   xsd:date .
+
+adlc:isEstablished
+    a             owl:DatatypeProperty ;
+    rdfs:label    "is established"@en ;
+    skos:altLabel "est établi"@fr ;
+    skos:altLabel "is proven"@en ;
+    rdfs:comment  "Whether the violation has been confirmed or not."@en ;
+    skos:note     "« Il est établi » means True; « Il n'est établi » means False."@fr ;
+    rdfs:domain   adlc:Violation ;
+    rdfs:range    xsd:boolean .
+
+adlc:isRejected
+    a             owl:DatatypeProperty ;
+    rdfs:label    "is rejected"@en ;
+    skos:altLabel "est rejetée"@fr ;
+    rdfs:comment  "Whether the referral has been rejected or not."@en ;
+    skos:note     "« est rejetée » means True; « n'est pas rejetée » means False."@fr ;
+    rdfs:domain   adlc:Referral ;
+    rdfs:range    xsd:boolean .
+
+adlc:isVertical
+    a             owl:DatatypeProperty ;
+    rdfs:label    "is vertical"@en ;
+    skos:altLabel "est verticale"@fr ;
+    rdfs:comment  "Whether the violation is between two actors in the same vertical chain, such as producers, suppliers and distributors."@en ;
+    skos:note     "« est vertical » means True; « n'est pas vertical » means False."@fr ;
+    rdfs:domain   adlc:Violation ;
+    rdfs:range    xsd:boolean .
+
+adlc:isHorizontal
+    a             owl:DatatypeProperty ;
+    rdfs:label    "is horizontal"@en ;
+    skos:altLabel "est horizontale"@fr ;
+    rdfs:comment  "Whether the violation is among competitors."@en ;
+    skos:note     "« est horizontale » means True; « n'est pas horizontale » means False."@fr ;
+    rdfs:domain   adlc:Violation ;
+    rdfs:range    xsd:boolean .
+
+### Object Properties
+adlc:hasParentOrganization
+    a             owl:ObjectProperty ;
+    rdfs:label    "has parent organization"@en ;
+    skos:altLabel "a société mère"@fr ;
+    rdfs:comment  "The larger organization that this organization is a sub-organization of, if any."@en ;
+    rdfs:domain   adlc:Organization ;
+    rdfs:range    adlc:Organization .
+
+adlc:submits
+    a             owl:ObjectProperty ;
+    rdfs:label    "submits"@en ;
+    skos:altLabel "saisit"@fr ;
+    rdfs:comment  "A relation between an organization or an individual that submits a referral for examination." ;
+    rdfs:domain   adlc:Organization ;
+    rdfs:range    adlc:Referral .
+
+adlc:commitsViolation
+    a            owl:ObjectProperty ;
+    rdfs:label   "commits"@en ;
+    rdfs:comment "A relation between an organization and the violation it commits."@en ;
+    rdfs:domain  adlc:Organization ;
+    rdfs:range   adlc:Violation .
+
+adlc:violatesLaw
+    a            owl:ObjectProperty ;
+    rdfs:label   "violates"@en ;
+    rdfs:comment "A relation between a violation and the law it violates."@en ;
+    rdfs:domain  adlc:Violation ;
+    rdfs:range   adlc:Law .
+
+adlc:requiresMeasure
+    a             owl:ObjectProperty ;
+    rdfs:label    "requires reparation"@en ;
+    skos:altLabel "requires remedy"@en ;
+    rdfs:comment  "A relation between a violation and the actions it is required to execute to repair the violation."@en ;
+    rdfs:domain   adlc:Violation ;
+    rdfs:range    adlc:Measure .

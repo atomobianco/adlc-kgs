@@ -1,0 +1,68 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix adlc: <http://example.org/>.
+
+### Instances
+adlc:MLP a adlc:Corporation;
+         adlc:hasName "Messageries Lyonnaises de Presse".
+
+adlc:NMPP a adlc:Corporation;
+          adlc:hasName "Nouvelles Messageries de la Presse Parisienne".
+
+adlc:SAEMTP a adlc:Corporation;
+            adlc:hasName "Société Auxiliaire pour l'Exploitation des Messageries Transports Presse".
+
+adlc:ADLC a adlc:CompetitionAuthority.
+
+adlc:Referral_03_0051_F a adlc:Referral;
+                        adlc:hasIdentifier "03/0051 F";
+                        adlc:hasDate "2003-08-08"^^xsd:date.
+
+adlc:Referral_04_0064_F a adlc:Referral;
+                        adlc:hasIdentifier "04/0064 F";
+                        adlc:hasDate "2004-09-20"^^xsd:date.
+
+adlc:Decision_09_D_04 a adlc:Decision;
+                      adlc:hasIdentifier "09-D-04";
+                      adlc:hasDate "2009-01-27"^^xsd:date.
+
+adlc:InterimMeasure_03_MC_04 a adlc:InterimMeasure;
+                             adlc:hasIdentifier "03-MC-04";
+                             adlc:hasDate "2003-12-22"^^xsd:date.
+
+adlc:Decision_05_D_01 a adlc:Decision;
+                      adlc:hasIdentifier "05-D-01";
+                      adlc:hasDate "2005-01-12"^^xsd:date.
+
+adlc:Hearing_2008_11_21 a adlc:Hearing;
+                        adlc:hasDate "2008-11-21"^^xsd:date.
+
+### Relations
+adlc:MLP adlc:submits adlc:Referral_03_0051_F.
+
+adlc:MLP adlc:submits adlc:Referral_04_0064_F.
+
+adlc:ADLC adlc:issues adlc:Decision_09_D_04.
+
+adlc:ADLC adlc:issues adlc:InterimMeasure_03_MC_04.
+
+adlc:ADLC adlc:issues adlc:Decision_05_D_01.
+
+adlc:Decision_09_D_04 adlc:addresses adlc:Referral_03_0051_F.
+
+adlc:Decision_09_D_04 adlc:addresses adlc:Referral_04_0064_F.
+
+adlc:Decision_09_D_04 adlc:addresses adlc:InterimMeasure_03_MC_04.
+
+adlc:Decision_09_D_04 adlc:addresses adlc:Decision_05_D_01.
+
+adlc:Hearing_2008_11_21 adlc:precedes adlc:Decision_09_D_04.
+
+adlc:MLP adlc:isHeardIn adlc:Hearing_2008_11_21.
+
+adlc:SAEMTP adlc:isHeardIn adlc:Hearing_2008_11_21.
+
+adlc:NMPP  adlc:isHeardIn adlc:Hearing_2008_11_21.

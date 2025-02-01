@@ -1,0 +1,188 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix adlc: <http://example.org/>.
+
+### Instances
+adlc:EtsCrapie
+    a            adlc:Corporation ;
+    adlc:hasName "Ets Crapie" .
+
+adlc:SignauxLaporte
+    a            adlc:Corporation ;
+    adlc:hasName "Signaux Laporte" .
+
+adlc:SignauxGirod
+    a            adlc:Corporation ;
+    adlc:hasName "Signaux Girod" .
+
+adlc:PicardieSignalisation
+    a            adlc:Corporation ;
+    adlc:hasName "Picardie Signalisation" .
+
+adlc:AlpSignalisation
+    a            adlc:Corporation ;
+    adlc:hasName "Alp Signalisation" .
+
+adlc:LaSignalisationCentrale
+    a            adlc:Corporation ;
+    adlc:hasName "La Signalisation Centrale" .
+
+adlc:DesmoulesPose
+    a            adlc:Corporation ;
+    adlc:hasName "Desmoules Pose" .
+
+adlc:LacroixSignalisation
+    a            adlc:Corporation ;
+    adlc:hasName "Lacroix Signalisation" .
+
+adlc:Violation_EtsCrapie
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_SignauxLaporte
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_SignauxGirod
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_PicardieSignalisation
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_AlpSignalisation
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_LaSignalisationCentrale
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_DesmoulesPose
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_LacroixSignalisation
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Article_L464_3
+    a            adlc:Law ;
+    adlc:hasName "L. 464-3 du code de commerce" .
+
+adlc:Fine_EtsCrapie
+    a                adlc:Fine ;
+    adlc:hasValue    2500.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_SignauxLaporte
+    a                adlc:Fine ;
+    adlc:hasValue    3000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_SignauxGirod
+    a                adlc:Fine ;
+    adlc:hasValue    9000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_PicardieSignalisation
+    a                adlc:Fine ;
+    adlc:hasValue    2000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_AlpSignalisation
+    a                adlc:Fine ;
+    adlc:hasValue    2500.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_LaSignalisationCentrale
+    a                adlc:Fine ;
+    adlc:hasValue    2000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_DesmoulesPose
+    a                adlc:Fine ;
+    adlc:hasValue    2000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_LacroixSignalisation
+    a                adlc:Fine ;
+    adlc:hasValue    2700.00 ;
+    adlc:hasCurrency "EUR" .
+
+### Relations
+adlc:EtsCrapie
+    adlc:commitsViolation adlc:Violation_EtsCrapie .
+
+adlc:SignauxLaporte
+    adlc:commitsViolation adlc:Violation_SignauxLaporte .
+
+adlc:SignauxGirod
+    adlc:commitsViolation adlc:Violation_SignauxGirod .
+
+adlc:PicardieSignalisation
+    adlc:commitsViolation adlc:Violation_PicardieSignalisation .
+
+adlc:AlpSignalisation
+    adlc:commitsViolation adlc:Violation_AlpSignalisation .
+
+adlc:LaSignalisationCentrale
+    adlc:commitsViolation adlc:Violation_LaSignalisationCentrale .
+
+adlc:DesmoulesPose
+    adlc:commitsViolation adlc:Violation_DesmoulesPose .
+
+adlc:LacroixSignalisation
+    adlc:commitsViolation adlc:Violation_LacroixSignalisation .
+
+adlc:Violation_EtsCrapie
+    adlc:requiresMeasure adlc:Fine_EtsCrapie .
+
+adlc:Violation_SignauxLaporte
+    adlc:requiresMeasure adlc:Fine_SignauxLaporte .
+
+adlc:Violation_SignauxGirod
+    adlc:requiresMeasure adlc:Fine_SignauxGirod .
+
+adlc:Violation_PicardieSignalisation
+    adlc:requiresMeasure adlc:Fine_PicardieSignalisation .
+
+adlc:Violation_AlpSignalisation
+    adlc:requiresMeasure adlc:Fine_AlpSignalisation .
+
+adlc:Violation_LaSignalisationCentrale
+    adlc:requiresMeasure adlc:Fine_LaSignalisationCentrale .
+
+adlc:Violation_DesmoulesPose
+    adlc:requiresMeasure adlc:Fine_DesmoulesPose .
+
+adlc:Violation_LacroixSignalisation
+    adlc:requiresMeasure adlc:Fine_LacroixSignalisation .
+
+adlc:Violation_EtsCrapie
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_SignauxLaporte
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_SignauxGirod
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_PicardieSignalisation
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_AlpSignalisation
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_LaSignalisationCentrale
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_DesmoulesPose
+    adlc:violatesLaw adlc:Article_L464_3 .
+
+adlc:Violation_LacroixSignalisation
+    adlc:violatesLaw adlc:Article_L464_3 .

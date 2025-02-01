@@ -1,0 +1,66 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix adlc: <http://example.org/>.
+
+### Instances
+adlc:NMPP
+    a            adlc:Corporation ;
+    adlc:hasName "Nouvelles Messageries de la Presse Parisienne" .
+
+adlc:SAEMTP
+    a            adlc:Corporation ;
+    adlc:hasName "Société Auxiliaire pour l'Exploitation des Messageries Transports Presse" .
+
+adlc:Violation_NMPP
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Violation_SAEMTP
+    a                  adlc:Violation ;
+    adlc:isEstablished true .
+
+adlc:Article_L420_2
+    a            adlc:Law ;
+    adlc:hasName "L. 420-2 du code de commerce" .
+
+adlc:Article_82_CE
+    a            adlc:Law ;
+    adlc:hasName "82 du traité CE" .
+
+adlc:Fine_NMPP
+    a                adlc:Fine ;
+    adlc:hasValue    2400000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:Fine_SAEMTP
+    a                adlc:Fine ;
+    adlc:hasValue    650000.00 ;
+    adlc:hasCurrency "EUR" .
+
+adlc:ADLC
+    a            adlc:CompetitionAuthority ;
+    adlc:hasName "Conseil de la concurrence" .
+
+### Relations
+adlc:NMPP
+    adlc:commitsViolation adlc:Violation_NMPP .
+
+adlc:SAEMTP
+    adlc:commitsViolation adlc:Violation_SAEMTP .
+
+adlc:Violation_NMPP
+    adlc:requiresMeasure adlc:Fine_NMPP .
+
+adlc:Violation_SAEMTP
+    adlc:requiresMeasure adlc:Fine_SAEMTP .
+
+adlc:Violation_NMPP
+    adlc:violatesLaw adlc:Article_L420_2 ;
+    adlc:violatesLaw adlc:Article_82_CE .
+
+adlc:Violation_SAEMTP
+    adlc:violatesLaw adlc:Article_L420_2 ;
+    adlc:violatesLaw adlc:Article_82_CE .
