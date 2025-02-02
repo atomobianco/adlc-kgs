@@ -8,24 +8,28 @@ Extracting RDF data from legal decisions.
 
 ## Context
 
-This project is a proof of concept for extracting RDF data from legal decisions issued by the French competition authority, "Autorité de la concurrence".
+This project belongs to a research program aimed at extracting structured data from legal decisions issued by the French Competition Authority ("Autorité de la concurrence"), presented in the following venue:
 
-Leveraging an agentic flow, it:
+> "Information Extraction for the Analysis of the French Competition Authority's Decisions Using Machine Learning" by Arnold Vialfont and Tommaso Bianco. Econom'IA Workshop 2024.
 
-1. loads a text and an ontology;
-2. asks LLM to extract RDF data that follows the given ontology;
-3. asks LLM to verify and edit the extracted RDF, also using programmatic verification;
-4. writes the final RDF data to a file.
+Using an agent-based workflow, this program:
+
+1. Loads a text and an ontology
+2. Uses LLM to extract RDF data that follows the given ontology
+3. Uses LLM to verify and edit the extracted RDF, also using programmatic verification
+4. Writes the final RDF data to a file
 
 ## Getting started
 
-First, install the environment
+First, install the environment:
 
 ```bash
 poetry install
 ```
 
-Finally, run the main script with
+Then, create a `.env` file with API keys for LLM providers the code will use.
+
+Finally, run the main script with:
 
 ```bash
 poetry run python ./src/main.py

@@ -154,30 +154,6 @@ files = [
 ]
 
 [[package]]
-name = "anthropic"
-version = "0.45.2"
-description = "The official Python library for the anthropic API"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "anthropic-0.45.2-py3-none-any.whl", hash = "sha256:ecd746f7274451dfcb7e1180571ead624c7e1195d1d46cb7c70143d2aedb4d35"},
-    {file = "anthropic-0.45.2.tar.gz", hash = "sha256:32a18b9ecd12c91b2be4cae6ca2ab46a06937b5aa01b21308d97a6d29794fb5e"},
-]
-
-[package.dependencies]
-anyio = ">=3.5.0,<5"
-distro = ">=1.7.0,<2"
-httpx = ">=0.23.0,<1"
-jiter = ">=0.4.0,<1"
-pydantic = ">=1.9.0,<3"
-sniffio = "*"
-typing-extensions = ">=4.10,<5"
-
-[package.extras]
-bedrock = ["boto3 (>=1.28.57)", "botocore (>=1.31.57)"]
-vertex = ["google-auth (>=2,<3)"]
-
-[[package]]
 name = "anyio"
 version = "4.8.0"
 description = "High level compatibility layer for multiple asynchronous event loop implementations"
@@ -2038,25 +2014,6 @@ docs = ["Sphinx", "furo"]
 test = ["objgraph", "psutil"]
 
 [[package]]
-name = "groq"
-version = "0.16.0"
-description = "The official Python library for the groq API"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "groq-0.16.0-py3-none-any.whl", hash = "sha256:74a4d2ea2d122eb272f44991bc82f5fdca975cc4374d0d09c5494337faccc05f"},
-    {file = "groq-0.16.0.tar.gz", hash = "sha256:127cf364504d9e9f2b1b35ee64693e4740b785d54957d05bf5494cf26196044e"},
-]
-
-[package.dependencies]
-anyio = ">=3.5.0,<5"
-distro = ">=1.7.0,<2"
-httpx = ">=0.23.0,<1"
-pydantic = ">=1.9.0,<3"
-sniffio = "*"
-typing-extensions = ">=4.10,<5"
-
-[[package]]
 name = "grpc-google-iam-v1"
 version = "0.14.0"
 description = "IAM API client library"
@@ -2677,22 +2634,6 @@ qdrant = ["qdrant-client (>=1.3.1,<2.0.0)"]
 text-helpers = ["chardet (>=5.1.0,<6.0.0)"]
 
 [[package]]
-name = "langchain-anthropic"
-version = "0.1.13"
-description = "An integration package connecting AnthropicMessages and LangChain"
-optional = false
-python-versions = "<4.0,>=3.8.1"
-files = [
-    {file = "langchain_anthropic-0.1.13-py3-none-any.whl", hash = "sha256:121f6f480da7685c239573d98322adb94fe486d40651ac341637f65da36881de"},
-    {file = "langchain_anthropic-0.1.13.tar.gz", hash = "sha256:32e7ac51e1874c47e1a20493e75f5bfc88b0ffeaf5f1aed6091547e1ae44bb85"},
-]
-
-[package.dependencies]
-anthropic = ">=0.26.0,<1"
-defusedxml = ">=0.7.1,<0.8.0"
-langchain-core = ">=0.1.43,<0.3"
-
-[[package]]
 name = "langchain-cohere"
 version = "0.1.5"
 description = "An integration package connecting Cohere and LangChain"
@@ -2754,21 +2695,6 @@ tenacity = ">=8.1.0,<9.0.0"
 
 [package.extras]
 extended-testing = ["jinja2 (>=3,<4)"]
-
-[[package]]
-name = "langchain-groq"
-version = "0.1.5"
-description = "An integration package connecting Groq and LangChain"
-optional = false
-python-versions = "<4.0,>=3.8.1"
-files = [
-    {file = "langchain_groq-0.1.5-py3-none-any.whl", hash = "sha256:f13fbec6143047a352ff2bbd2241e4b4b9559c6f799a26e6da5f2b0d6e02bff5"},
-    {file = "langchain_groq-0.1.5.tar.gz", hash = "sha256:af166fd30c60006dba4345bc9a59edfa2745edcb5b3e0bd957abd3d09416bbc5"},
-]
-
-[package.dependencies]
-groq = ">=0.4.1,<1"
-langchain-core = ">=0.1.45,<0.3"
 
 [[package]]
 name = "langchain-openai"
@@ -6271,4 +6197,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "01bdaa26eb1db11e020a393132472a26d3b21b49c4615ad02ab31bd92d6e0c3d"
+content-hash = "a2c6c3684b07b04756f6ab5c517749ab2367deb448974b937b850fc6b5a15ccd"
