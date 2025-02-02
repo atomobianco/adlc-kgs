@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "In case you want to cite this project."
 authors:
-- family-names: Bianco
-  given-names: Tommaso
-- family-names: Vialfont
-  given-names: Arnold
+  - family-names: Bianco
+    given-names: Tommaso
+  - family-names: Vialfont
+    given-names: Arnold
 title: "ADLC-KGs: Extracting RDF data from legal decisions."
 date-released: 2025-02-01
 url: "https://github.com/atomobianco/adlc-kgs"
