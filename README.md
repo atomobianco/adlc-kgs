@@ -34,3 +34,5 @@ Finally, run the main script with:
 ```bash
 poetry run python ./src/main.py
 ```
+
+Note that we use dependencies only compatible with python 3.11, so that you may need to create and activate a dedicated environment to run these two commands.
